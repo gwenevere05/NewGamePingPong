@@ -121,9 +121,11 @@ class StartMenu(Screen):
     pass
 
 class PongMenu(Screen):
-    pass
     #def on_enter(self):
+    #    import pdb
+    #    pdb.set_trace()
     #    game.serve_ball()
+    pass
 
 
 class EndMenu(Screen):

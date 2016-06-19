@@ -75,10 +75,12 @@
         valign: 'middle'
         font_size: 100
         text_size: self.size
-        on_press: root.manager.current = 'foogame'; root.serve_ball
+        on_press: root.manager.current = 'foogame'; 
 
 <PongMenu>:
     name: 'foogame'
+    pg: game
+    on_enter: root.pg.serve_ball()
     PongGame:
         id: game  
 

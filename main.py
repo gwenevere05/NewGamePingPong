@@ -77,7 +77,7 @@ class PongGame(Widget):
 
     def __init__ (self, *args, **kwargs):
         super (PongGame, self).__init__(*args, **kwargs)
-        Clock.schedule_interval(self.update, 1.0 / 60.0)
+        Clock.schedule_interval(self.update, 1.0 / 30.0)
 
     def serve_ball(self, vel=(4, 0)):
         self.ball.center = self.center
@@ -100,8 +100,11 @@ class PongGame(Widget):
             self.serve_ball(vel=(4, 0))
         if self.ball.x > self.width:
             self.player1.score += 1
-            self.serve_ball(vel=(-4, 0))
-
+            self.serve_ball(vel=(-4, 0))    
+        #self.parent.canvas.clear()
+        # with self.canvas:
+        #     self.draw_points()
+    
     def on_touch_move(self, touch):
         if touch.x < self.width / 3:
             self.player1.center_y = touch.y
@@ -111,27 +114,39 @@ class PongGame(Widget):
 
 
 
-class StartMenu(ScreenManager):
+class StartMenu(Screen):
     # def on_enter(self):
     #     entrancesong = SoundLoader.load('Detective.wav')
     #     self.entrancesong.play()
     pass
 
-class EndMenu(ScreenManager):
+class PongMenu(Screen):
+    pass
+    #def on_enter(self):
+    #    game.serve_ball()
+
+
+class EndMenu(Screen):
     pass
 
+class ScreenManagement(ScreenManager):
+    pass
+# sm = ScreenManager(transition=WipeTransition())
+# sm.add_widget(StartMenu(name='home'))
+# sm.add_widget(PongMenu(name='newgame'))
 
 
 class PongApp(App):
+    kv_file='pong.kv'
     def build(self):
-        self.load_kv('pong.kv')#calls my kivy file
-        return StartMenu(transition=WipeTransition())
+    #     self.load_kv('pong.kv')#calls my kivy file
+    #     return sm
 
 
-        # game = PongGame()
-        # game.serve_ball()
-        # Clock.schedule_interval(game.update, 1.0 / 60.0)
-        # return game
+    # game = PongGame()
+    #     game.serve_ball()
+    #     Clock.schedule_interval(game.update, 1.0 / 60.0)
+        return ScreenManagement()
 
 
 if __name__ == '__main__':

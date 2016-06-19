@@ -1,5 +1,10 @@
 #:kivy 1.8.0
 
+<ScreenManagement>:
+    StartMenu:
+    PongMenu:
+
+
 <PongBall>:
     size: 50, 50 
     canvas:
@@ -56,24 +61,43 @@
 
 
 
+
+
 <StartMenu>:
-    id: screen_manager
-    
+    id: start_menu
+ 
+    name: 'home'
+    Button:
+        background_color: 148, 0, 211, 1.0
+        text: '    Welcome To     Ping Pong Tournament'
+        color: 255, 255, 255, 1.0
+        halign: 'center'
+        valign: 'middle'
+        font_size: 100
+        text_size: self.size
+        on_press: root.manager.current = 'foogame'; print "got clicked"
+
+<PongMenu>:
+    name: 'foogame'
+    PongGame:
+        id: game  
+
+
+<EndMenu>:
+    id: End
+
     Screen:
         name: 'home'
         Button:
             background_color: 148, 0, 211, 1.0
-            text: '    Welcome To     Ping Pong Tournament'
+            text: 'Game Over'
             color: 255, 255, 255, 1.0
             halign: 'center'
             valign: 'middle'
             font_size: 100
             text_size: self.size
-            on_release: root.current = 'newgame';game.serve_ball()
+            on_release: 
 
-    Screen:
-        name: 'newgame'
-        PongGame:
-            id: game        
+
 
 
